@@ -7,4 +7,8 @@ PYTHON_VERSIONS=$(python --version | awk '{print $2}' | cut -d. -f1,2)
 
 CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSIONS}.txt"
 
-pip install apache-airflow==${AIRFLOW_VERSION} --constraint ${CONSTRAINTS_URL}
+# Install Apache Airflow with the specified version and constraints
+pip install apache-airflow==${AIRFLOW_VERSION} --constraint ${CONSTRAINT_URL}
+
+# Create docker-compose.yaml for the specified Airflow version
+curl -fsSL -o docker-compose.yaml "https://airflow.apache.org/docs/apache-airflow/${AIRFLOW_VERSION}/docker-compose.yaml"
